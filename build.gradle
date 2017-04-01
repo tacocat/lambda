@@ -1,0 +1,46 @@
+/*
+ * For more details take a look at the Java Libraries chapter in the Gradle
+ * user guide available at https://docs.gradle.org/3.4.1/userguide/java_library_plugin.html
+ */
+import org.gradle.internal.os.OperatingSystem
+
+// Apply the java-library plugin to add support for Java Library
+apply plugin: 'java-library'
+
+// Determine operating system for LWJGL natives
+switch ( OperatingSystem.current() ) {
+	case OperatingSystem.WINDOWS:
+		project.ext.lwjglNatives = "natives-windows"
+		break
+	case OperatingSystem.LINUX:
+		project.ext.lwjglNatives = "natives-linux"
+	break
+	case OperatingSystem.MAC_OS:
+		project.ext.lwjglNatives = "natives-macos"
+		break
+}
+
+project.ext.lwjglVersion = "3.1.1"
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // These dependencies are exported to consumers, that is to say found on their compile classpath.
+    api "org.lwjgl:lwjgl:${lwjglVersion}"
+    api "org.lwjgl:lwjgl-glfw:${lwjglVersion}"
+    api "org.lwjgl:lwjgl-openal:${lwjglVersion}"
+    api "org.lwjgl:lwjgl-opengl:${lwjglVersion}"
+
+    // These dependencies are available to consumers at runtime
+    runtime "org.lwjgl:lwjgl:${lwjglVersion}:${lwjglNatives}"
+    runtime "org.lwjgl:lwjgl-glfw:${lwjglVersion}:${lwjglNatives}"
+    runtime "org.lwjgl:lwjgl-openal:${lwjglVersion}:${lwjglNatives}"
+    runtime "org.lwjgl:lwjgl-opengl:${lwjglVersion}:${lwjglNatives}"
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
