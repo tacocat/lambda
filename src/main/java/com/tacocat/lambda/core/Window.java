@@ -15,14 +15,12 @@ import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
 import static org.lwjgl.glfw.GLFW.glfwShowWindow;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
-import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
 import static org.lwjgl.glfw.GLFW.glfwGetKey;
 import static org.lwjgl.opengl.GL11.GL_TRUE;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-import java.nio.ByteBuffer;
-
-import org.lwjgl.glfw.GLFWvidmode;
+import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.GLFWVidMode;
 
 /**
  * TODO handle platforms
@@ -36,10 +34,13 @@ public class Window {
 	}
 	
 	private void init(int width, int height, String title) {
+		// Setup an error callback. The default implementation
+		// will print the error message in System.err.
+		GLFWErrorCallback.createPrint(System.err).set();
+
 		// Initialize GLFW 
-		if(glfwInit() != GL_TRUE){
-			// Throw an error.
-			System.err.println("GLFW initialization failed!");
+		if(!glfwInit()){
+			throw new IllegalStateException("Unable to initialize GLFW");
 		}
 		
 		// Allows our window to be resizable
@@ -54,13 +55,13 @@ public class Window {
 		}
 		
 		// Get the resolution of the primary monitor
-		ByteBuffer vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 		
 		// Center window
 		glfwSetWindowPos(
 			window,
-			(GLFWvidmode.width(vidmode) - width) / 2,
-			(GLFWvidmode.height(vidmode) - height) / 2
+			(vidmode.width() - width) / 2,
+			(vidmode.height() - height) / 2
 		);
 		
 		// Set context current to this window
@@ -79,7 +80,7 @@ public class Window {
 	}
 	
 	public boolean shouldClose() {
-		return glfwWindowShouldClose(window) == GL_TRUE;
+		return glfwWindowShouldClose(window);
 	}
 	
 	public long getHandle() {
