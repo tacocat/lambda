@@ -68,8 +68,8 @@ public class OpenGLEngine extends RenderEngine {
         
 		// TODO shader support
         shader = new ShaderProgram(
-			new Shader("src/main/com/tacocat/lambda/graphics/shaders/vertex.glsl", GL20.GL_VERTEX_SHADER),
-			new Shader("src/main/com/tacocat/lambda/graphics/shaders/fragment.glsl", GL20.GL_FRAGMENT_SHADER)
+			new Shader("shaders/vertex.glsl", GL20.GL_VERTEX_SHADER),
+			new Shader("shaders/fragment.glsl", GL20.GL_FRAGMENT_SHADER)
 		);
 	}
 
@@ -87,7 +87,6 @@ public class OpenGLEngine extends RenderEngine {
 		// FPS
 		frameCount++;
 		if (fpsTimer.ready()) {
-			System.out.println(frameCount);
 			fps = frameCount;
 			frameCount = 0;
 		}	

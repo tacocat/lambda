@@ -9,8 +9,8 @@ import static org.lwjgl.opengl.GL20.glDeleteShader;
 import static org.lwjgl.opengl.GL20.glShaderSource;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
@@ -53,12 +53,18 @@ public class Shader {
 		StringBuilder shaderSource = new StringBuilder();
 	     
 	    try {
-	        BufferedReader reader = new BufferedReader(new FileReader(filename));
+	        BufferedReader reader = new BufferedReader(
+				new InputStreamReader(
+					getClass().getClassLoader().getResourceAsStream(filename)
+				)
+			);
+
 	        String line;
 	        while ((line = reader.readLine()) != null) {
 	            shaderSource.append(line).append("\n");
 	        }
 	        reader.close();
+
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	        throw new Error("Could not read shader file:" + filename);
