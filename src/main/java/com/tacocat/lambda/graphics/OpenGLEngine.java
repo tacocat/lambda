@@ -16,7 +16,7 @@ import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.opengl.GL11.glEnable;
 
 import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GLContext;
+import org.lwjgl.opengl.GL;
 
 import com.tacocat.lambda.core.RenderEngine;
 import com.tacocat.lambda.core.RenderQueue;
@@ -54,7 +54,7 @@ public class OpenGLEngine extends RenderEngine {
 
 	public OpenGLEngine() {
 		// Set OpenGL context
-		GLContext.createFromCurrent();
+		GL.createCapabilities();
 	 
 		// Set the clear color
 		glClearColor(0.0f, 0.4f, 0.8f, 0.0f);

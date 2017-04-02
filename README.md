@@ -10,3 +10,14 @@ No worrying about mutexes, semaphores, atomic operations, synchronized methods. 
 Write your game logic once. Just programmed a system for moving your player? Great. Use the same logic to move every object: player, enemy, particle, UI cursor.
 
 In fact, use that code to move every object in every game you create. Share that code, and no one will have to write move() again.
+
+# Contributing
+
+## Prerequisites
+ - [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (8 or higher)
+ - [Gradle](https://gradle.org/)  (3.4.1 or higher)
+
+## Building
+ - `./gradlew build` - build and test
+ - `./gradlew assemble` - build only
+ - `./gradlew test` - test only
