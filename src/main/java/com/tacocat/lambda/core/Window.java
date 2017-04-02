@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.tacocat.lambda.core;
 
 import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
@@ -28,66 +25,66 @@ import org.lwjgl.glfw.GLFWVidMode;
 public class Window {
     // The window handle
     private long window;
-	
-	public Window(int width, int height, String title) {
-		init(width, height, title);	
-	}
-	
-	private void init(int width, int height, String title) {
-		// Setup an error callback. The default implementation
-		// will print the error message in System.err.
-		GLFWErrorCallback.createPrint(System.err).set();
 
-		// Initialize GLFW 
-		if(!glfwInit()){
-			throw new IllegalStateException("Unable to initialize GLFW");
-		}
-		
-		// Allows our window to be resizable
-		glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
-		
-		// Create main window
-		window = glfwCreateWindow(width, height, title, NULL, NULL);
-	
-		// Check if window was created
-		if(window == NULL){
-			System.err.println("Could not create our Window!");
-		}
-		
-		// Get the resolution of the primary monitor
-		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		
-		// Center window
-		glfwSetWindowPos(
-			window,
-			(vidmode.width() - width) / 2,
-			(vidmode.height() - height) / 2
-		);
-		
-		// Set context current to this window
-		glfwMakeContextCurrent(window);
-		
-		// Show the window
-		glfwShowWindow(window);
-		
-		// vsync off
-		// glfwSwapInterval(0);
-	} 
-	 
-	public void pollForEvents() {
-		// Polls for any window events such as the window closing etc.
-		glfwPollEvents();
-	}
-	
-	public boolean shouldClose() {
-		return glfwWindowShouldClose(window);
-	}
-	
-	public long getHandle() {
-		return window;
-	}
-	
-	public boolean isKeyDown(int key){
+    public Window(int width, int height, String title) {
+        init(width, height, title);
+    }
+
+    private void init(int width, int height, String title) {
+        // Setup an error callback. The default implementation
+        // will print the error message in System.err.
+        GLFWErrorCallback.createPrint(System.err).set();
+
+        // Initialize GLFW
+        if(!glfwInit()){
+            throw new IllegalStateException("Unable to initialize GLFW");
+        }
+
+        // Allows our window to be resizable
+        glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+
+        // Create main window
+        window = glfwCreateWindow(width, height, title, NULL, NULL);
+
+        // Check if window was created
+        if(window == NULL){
+            System.err.println("Could not create our Window!");
+        }
+
+        // Get the resolution of the primary monitor
+        GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+        // Center window
+        glfwSetWindowPos(
+            window,
+            (vidmode.width() - width) / 2,
+            (vidmode.height() - height) / 2
+        );
+
+        // Set context current to this window
+        glfwMakeContextCurrent(window);
+
+        // Show the window
+        glfwShowWindow(window);
+
+        // vsync off
+        // glfwSwapInterval(0);
+    }
+
+    public void pollForEvents() {
+        // Polls for any window events such as the window closing etc.
+        glfwPollEvents();
+    }
+
+    public boolean shouldClose() {
+        return glfwWindowShouldClose(window);
+    }
+
+    public long getHandle() {
+        return window;
+    }
+
+    public boolean isKeyDown(int key){
         return glfwGetKey(window, key) == GLFW_PRESS;
     }
 }
