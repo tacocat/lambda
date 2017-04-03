@@ -7,11 +7,9 @@ import java.util.function.BiConsumer;
 
 import com.tacocat.lambda.core.component.Component;
 import com.tacocat.lambda.core.component.ComponentStore;
+import com.tacocat.lambda.core.platform.Platform;
 import com.tacocat.lambda.core.system.GameSystem;
 
-/**
- * TODO handle platforms
- */
 public class Game {
     private List<GameSystem> systems;
     private ComponentStore components;
@@ -19,13 +17,13 @@ public class Game {
     private RenderEngine renderEngine;
     private Window window;
 
-    public Game(Window window, RenderEngine renderEngine) {
+    public Game(Platform platform) {
         systems = new ArrayList<GameSystem>();
         components = new ComponentStore();
         gameEngine = new GameEngine();
 
-        this.renderEngine = renderEngine;
-        this.window = window;
+        this.renderEngine = platform.getRenderEngine();
+        this.window = platform.getWindow();
     }
 
     public void init(BiConsumer<List<GameSystem>, ComponentStore> initFunction) {

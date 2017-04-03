@@ -19,9 +19,6 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 
-/**
- * TODO handle platforms
- */
 public class Window {
     // The window handle
     private long window;
