@@ -11,6 +11,6 @@ in vec2 UV;
 layout (location = 0) out vec4 FragColor;
  
 void main(void) {
-    FragColor = Color;
-    FragColor = texture(diffuseTexture, UV);
+    // Assume only one of vertex color or texture was provided
+    FragColor = Color + texture(diffuseTexture, UV);
 }
