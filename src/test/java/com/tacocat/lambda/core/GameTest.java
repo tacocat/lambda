@@ -7,26 +7,23 @@ import com.tacocat.lambda.core.entity.NamedComponent;
 import com.tacocat.lambda.core.platform.Platform;
 import com.tacocat.lambda.core.system.GameSystem;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class GameTest {
 
-    private class TestPlatform implements Platform {
+    // Mock outside dependencies
+    private Platform platform = mock(Platform.class);
+    private RenderEngine renderEngine = mock(RenderEngine.class);
 
-        @Override
-        public Window getWindow() {
-            return null;
-        }
-
-        @Override
-        public RenderEngine getRenderEngine() {
-            return null;
-        }
-    }
+    private GameSystem system1 = mock(GameSystem.class);
+    private GameSystem system2 = mock(GameSystem.class);
 
     private class Position {}
-
     private static class MockBehavior extends Behavior {
         public static final NamedComponent p1 = new NamedComponent();
         public static final NamedComponent p2 = new NamedComponent();
@@ -37,22 +34,27 @@ public class GameTest {
         }
     }
 
-    private class MockSystem1 extends GameSystem {
-        @Override
-        protected void update() {}
-    }
-
-    private class MockSystem2 extends GameSystem {
-        @Override
-        protected void update() {}
+    @Before
+    public void before() {
+        when(platform.getRenderEngine()).thenReturn(renderEngine);
+        when(renderEngine.getRenderQueue()).thenReturn(mock(RenderQueue.class));
     }
 
     @Test
-    public void init() throws Exception {
-        Game game = new Game(new TestPlatform());
+    public void defaultSystems() {
+        Game game = new Game(platform);
 
-        GameSystem system1 = new MockSystem1();
-        GameSystem system2 = new MockSystem2();
+        Assert.assertEquals("A newly created game starts with default systems",
+            2,
+            game.getSystems().size()
+        );
+    }
+
+
+    @Test
+    public void init() {
+        Game game = new Game(platform);
+
         Behavior behavior = new MockBehavior();
         Entity entity = new Entity(behavior);
 
