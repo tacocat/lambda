@@ -1,5 +1,7 @@
 package com.tacocat.lambda.core;
 
+import com.tacocat.lambda.common.render.Render;
+import com.tacocat.lambda.common.simplephysics.SimplePhysics;
 import com.tacocat.lambda.core.component.ComponentStore;
 import com.tacocat.lambda.core.platform.Platform;
 import com.tacocat.lambda.core.entity.Entity;
@@ -12,7 +14,6 @@ public class Game {
     private RenderEngine renderEngine;
     private Window window;
 
-
     public Game(Platform platform) {
         systems = new GameList<>();
         components = new ComponentStore();
@@ -20,6 +21,18 @@ public class Game {
 
         this.renderEngine = platform.getRenderEngine();
         this.window = platform.getWindow();
+
+        addDefaultSystems();
+    }
+
+    /**
+     * Adds systems common to most games to simplify user configuration
+     */
+    private void addDefaultSystems() {
+        systems.add(
+            new Render(renderEngine.getRenderQueue()),
+            new SimplePhysics()
+        );
     }
 
     /**
