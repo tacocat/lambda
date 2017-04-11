@@ -1,0 +1,30 @@
+{
+    "package": {
+        "name": "lambda",
+        "repo": "lambda",
+        "subject": "lambda-engine",
+        "desc": "Game Engine",
+        "website_url": "https://github.com/tacocat/lambda",
+        "issue_tracker_url": "https://github.com/tacocat/lambda/issues",
+        "vcs_url": "https://github.com/tacocat/lambda.git",
+        "licenses": [
+            "Apache-2.0"
+        ],
+        "labels": [
+            "game",
+            "engine"
+        ],
+        "public_download_numbers": false,
+        "public_stats": false
+    },
+    "version": {
+        "name": "0.0.1"
+    },
+    "files": [
+        {
+            "includePattern": "build/libs/(.*)",
+            "uploadPattern": "com/tacocat/lambda/0.0.1/$1"
+        }
+    ],
+    "publish": true
+}
