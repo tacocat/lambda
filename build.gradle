@@ -6,6 +6,7 @@ import org.gradle.internal.os.OperatingSystem
 
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java-library'
+apply plugin: 'maven-publish'
 
 // Determine operating system for LWJGL natives
 switch ( OperatingSystem.current() ) {
@@ -48,5 +49,22 @@ dependencies {
 test {
     testLogging {
         exceptionFormat = 'full'
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'com.tacocat'
+            version '0.0.1'
+
+            from components.java
+        }
+    }
+}
+
+model {
+    tasks.generatePomFileForMavenJavaPublication {
+        destination = file("$buildDir/libs/lambda.pom")
     }
 }
