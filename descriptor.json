@@ -18,12 +18,12 @@
         "public_stats": false
     },
     "version": {
-        "name": "0.0.1"
+        "name": "0.0.2"
     },
     "files": [
         {
             "includePattern": "build/libs/(.*)",
-            "uploadPattern": "com/tacocat/lambda/0.0.1/$1"
+            "uploadPattern": "com/tacocat/lambda/0.0.2/$1"
         }
     ],
     "publish": true
