@@ -11,6 +11,17 @@ Write your game logic once. Just programmed a system for moving your player? Gre
 
 In fact, use that code to move every object in every game you create. Share that code, and no one will have to write move() again.
 
+# Quick Start
+Clone or fork the [Starter Kit](https://github.com/tacocat/lambda-starter-kit)
+ - `git clone https://github.com/tacocat/lambda-starter-kit.git`
+
+Run your game
+ - `./gradlew run`
+
+Congrats! You are ready to go.
+
+[Read the full Getting Started guide here.](https://github.com/tacocat/lambda-starter-kit/blob/master/README.md)
+
 # Contributing
 
 ## Prerequisites
