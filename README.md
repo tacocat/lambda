@@ -11,6 +11,8 @@ Write your game logic once. Just programmed a system for moving your player? Gre
 
 In fact, use that code to move every object in every game you create. Share that code, and no one will have to write move() again.
 
+[Learn how the Lambda Engine architecture breaks game programming down into focused, reusable parts.](https://github.com/tacocat/lambda/wiki/Lambda-Engine-Architecture)
+
 # Quick Start
 Clone or fork the [Starter Kit](https://github.com/tacocat/lambda-starter-kit)
  - `git clone https://github.com/tacocat/lambda-starter-kit.git`
