@@ -89,15 +89,15 @@ public class Component {
 	/**
 	 * @return Entity component belongs to, or null if independent
 	 */
-	public Entity getParent() {
+	public Entity getEntity() {
 		return parent;
 	}
 
 	/**
-	 * @param parent entity
+	 * @param entity
 	 */
-	public void setParent(Entity parent) {
-		this.parent = parent;
+	public void setEntity(Entity entity) {
+		this.parent = entity;
 	}
 	
 	/**

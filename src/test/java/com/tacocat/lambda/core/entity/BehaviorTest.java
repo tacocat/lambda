@@ -9,9 +9,6 @@ import org.junit.Test;
 
 import com.tacocat.lambda.core.component.Component;
 import com.tacocat.lambda.core.component.DataField;
-import com.tacocat.lambda.core.entity.Behavior;
-import com.tacocat.lambda.core.entity.Entity;
-import com.tacocat.lambda.core.entity.NamedComponent;
 
 
 public class BehaviorTest {
@@ -34,7 +31,7 @@ public class BehaviorTest {
 		centered.registerWith(entity);
 		
 		Assert.assertEquals("Components defined in behavior have their parent entity set",
-			position.getParent(),
+			position.getEntity(),
 			entity
 		);
 	}
@@ -63,7 +60,7 @@ public class BehaviorTest {
 		
 		Assert.assertEquals("Components defined with callback have their parent entity set",
 			entity,
-			position.getParent()
+			position.getEntity()
 		);
 		
 		Assert.assertEquals("Values returned from callback are set in component",

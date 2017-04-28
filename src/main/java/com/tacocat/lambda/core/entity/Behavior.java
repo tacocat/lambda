@@ -44,7 +44,7 @@ public class Behavior {
 	 */
 	public void registerWith(Entity entity) {
 		// Mark all components as a child of entity
-		components.values().forEach(component -> component.setParent(entity));
+		components.values().forEach(component -> component.setEntity(entity));
 		
 		// Handle dependency callbacks
 		callbacks.forEach((field, callback) -> {
