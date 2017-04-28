@@ -10,7 +10,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.tacocat.lambda.common.render.component.Transform;
-import com.tacocat.lambda.core.GameEngine;
 import com.tacocat.lambda.core.component.Component;
 import com.tacocat.lambda.core.component.ComponentStore;
 import com.tacocat.lambda.core.system.GameSystem;
@@ -22,7 +21,7 @@ public class GameEngineTest {
 		@Override
 		protected void update() {
 			findAll(Transform.class).forEach((transform) -> {
-				modify(transform, Transform.X, transform.get(Transform.X) + 1f);
+				set(transform, Transform.X, transform.get(Transform.X) + 1f);
 			});
 			
 		}

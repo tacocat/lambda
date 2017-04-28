@@ -70,10 +70,10 @@ public abstract class GameSystem {
 	}
 
 	/**
-	 * @param key name of component
+	 * @param key name of component defined in a Behavior
 	 * @return all components registered with the given name
 	 */
-	protected List<Component> findAllByName(NamedComponent key) {
+	protected List<Component> findAll(NamedComponent key) {
 		return components.findByName(key);
 	}
 	
@@ -103,12 +103,12 @@ public abstract class GameSystem {
 	}
 	
 	/**
-	 * Short hand for modifying a single property
+	 * Set a single component property
 	 * @param target component to modify data
 	 * @param field DataField of component to modify
 	 * @param value new value
 	 */
-	protected void modify(Component target, DataField<?> field, Object value) {
+	protected void set(Component target, DataField<?> field, Object value) {
 		currentActionList.add(new ModificationAction(
 			target,
 			component -> component.modify(field, value)
