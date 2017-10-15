@@ -8,7 +8,7 @@ import org.gradle.internal.os.OperatingSystem
 apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 
-version = '0.0.2'
+version = '0.0.3'
 
 // Determine operating system for LWJGL natives
 switch ( OperatingSystem.current() ) {
